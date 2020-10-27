@@ -43,8 +43,28 @@ class LoginHandler {
                 return $token;
             }
         }
+    }
 
+    //Verifica se o email existe
+    public function emailExists($email){
+        $user = User::select()->where('email', $email)->one();
+        return $user ? true : false;
+    }
 
+    //adicionar usuario no banco
+    public function addUser($name, $email, $password, $birthdate){
+        //encripta a senha
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $token = md5(time().rand(0,9999).time());
 
+        User::insert([
+            'name' => $name,
+            'email' => $email,
+            'password' => $hash,
+            'birthdate' => $birthdate,
+            'token' => $token
+        ])->execute();
+
+        return $token;
     }
 }
