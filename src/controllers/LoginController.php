@@ -58,7 +58,7 @@ class LoginController extends Controller {
 
     public function signupAction(){
         $name = filter_input(INPUT_POST, 'name');
-        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDADE_EMAIL);
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $password = filter_input(INPUT_POST, 'password');
         $birthdate = filter_input(INPUT_POST, 'birthdate');
 
@@ -95,6 +95,7 @@ class LoginController extends Controller {
             }
         }
         else{
+            $_SESSION['flash'] = 'Não foram preenchidos todos os dados!';
             $this->redirect('/cadastro');
         }
     }
