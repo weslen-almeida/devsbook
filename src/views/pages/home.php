@@ -8,7 +8,7 @@
 
 
                 <!--carrega o feed do editor-->
-                <?= $render('feed-editor'); ?>
+                <?= $render('feed-editor', ['user'=>$loggedUser]); ?>
 
                 <!--carrega o feed de postagens-->
                 <?= $render('feed-item'); ?>
