@@ -35,7 +35,7 @@ class LoginHandler {
 
         if($user){
             //verificar a senha
-            if(password_verify($password, $user('password'))){
+            if(password_verify($password, $user['password'])){
                 //gerar um token para armazenar a sessão
                 $token = md5(time().rand(0,9999).time());
 

@@ -19,7 +19,7 @@ class LoginController extends Controller {
     }
 
     public function signinAction(){
-        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDADE_EMAIL);
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $password = filter_input(INPUT_POST, 'password');
 
         //verifica se o login e senha foram digitados
