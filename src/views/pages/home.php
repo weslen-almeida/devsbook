@@ -5,17 +5,24 @@
 
         <div class="row">
             <div class="column pr-5">
+                 <!--carrega o feed do editor-->
+                <?= $render('feed-editor', ['user' => $loggedUser]); ?>
 
-
-                <!--carrega o feed do editor-->
-                <?= $render('feed-editor', ['user'=>$loggedUser]); ?>
-
-                <!--carrega o feed de postagens-->
-                <?= $render('feed-item'); ?>
-
-
+                <?php foreach($feed['posts'] as $feedItem): ?>
+                     <!--carrega o feed de postagens-->
+                     <?= $render('feed-item', [
+                         'data' => $feedItem,
+                        'loggedUser' => $loggedUser]); ?>
+                <?php endforeach; ?>
+                
+                <div class="feed-pagination">
+                    <?php for($q=0;$q<$feed['pageCount']; $q++): ?>
+                            <a class="<?=($q==$feed['currentPage']?'active' : ''); ?>" href="<?=$base;?>/?page=<?=$q;?>"> <?=$q+1;?> </a>
+                    <?php endfor; ?>
+                </div>
 
             </div>
+
             <div class="column side pl-5">
                 <div class="box banners">
                     <div class="box-header">
